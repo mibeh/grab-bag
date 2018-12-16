@@ -13,7 +13,7 @@ int is_prime(long long p){
 
 	for(i = 2; i <= p / 2; i++)
 		if(p % i == 0)
-			return 0; // not Prime
+			return 0; // not prime
 
 	return 1; // is prime
 }
@@ -21,7 +21,7 @@ int is_prime(long long p){
 // Checks if a number is a perfect square
 int perfect_square(long long n){
 
-	long long rootn = sqrt(n), i;
+	long long rootn = sqrt(n);
 
 	if(rootn * rootn == n)
 		return 1;
@@ -44,7 +44,7 @@ int main(void){
 		if (i == n)
 			break;
 
-		printf("Trial Division: ");
+		printf("Trial Division:\t\t");
 
 		begin = clock();
 
@@ -57,35 +57,37 @@ int main(void){
 	            // Check if 'i' is a Prime
 	            isPrime = is_prime(i);
 
-							// J is the other factor
-							j = n / i;
+				// J is the other factor
+				j = n / i;
 
-							// Check if 'j' is a Prime
-							isPrime = is_prime(i);
+				// Check if 'j' is a Prime
+				isPrime = is_prime(i);
 
 	            // If 'i' and 'j' are prime then we're good
 	            if(isPrime==1) {
-									end = clock();
-									time = (double)(end - begin) / CLOCKS_PER_SEC;
-	              	// printf ("%lld*%lld=%lld\n", i, j, n);
-									printf("The factors of %lld are %lld and %lld. This took %lf seconds\n", n, i, j, time);
-									break;
+					end = clock();
+					time = (double)(end - begin) / CLOCKS_PER_SEC;
+					printf("The factors of %lld are %lld and %lld. This took %lf seconds\n", n, i, j, time);
+					break;
 	            }
 	        }
-					else {
-						// if the factors are 1 and itself
-						if(i == (int)sqrt(n)){
-							end = clock();
-							time = (double)(end - begin) / CLOCKS_PER_SEC;
-							printf("The factors of %lld are 1 and %lld. This took %lf seconds\n", n, n, time);
-						}
-					}
+			else {
+				// if the factors are 1 and itself
+				if(i == (int)sqrt(n)){
+					end = clock();
+					time = (double)(end - begin) / CLOCKS_PER_SEC;
+					printf("The factors of %lld are 1 and %lld. This took %lf seconds\n", n, n, time);
+				}
+			}
 	    }
 
 		printf("Fermat:\t\t");
 
 		// One of the factors must be at least as great as the square root of n
 		x = ceil(sqrt(n));
+
+		// n = (x+y)(x-y)
+		// y^2 = x^2 - n
 
 		begin = clock();
 
@@ -95,7 +97,6 @@ int main(void){
 			x2 = x * x;
 			y2 = x2 - n;
 
-			// IF it is a perfect square
 			if(perfect_square(y2)){
 
 				y = sqrt(y2);
@@ -108,7 +109,7 @@ int main(void){
 
 				break;
 			}
-			// Try next x value
+
 			x++;
 		}
 
