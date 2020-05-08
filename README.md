@@ -1,2 +1,1 @@
-# Random
-Miscellaneous Tid Bits
+### Random, miscellaneous tid bits.
